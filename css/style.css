@@ -1,0 +1,189 @@
+/***CSS***/
+@font-face
+{
+font-family: GeosansLight;
+src: url('../fonts/GeosansLight.ttf');
+}
+body{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 14px;
+	font-weight: light;
+}
+
+img#logo {
+	width: 180px;
+	float:left;
+	margin-right: 25px;
+}
+
+header,
+#advertise{
+	width:1024px;
+	margin:0 auto;
+	overflow: auto;
+		border-bottom: double 4px #ccc;
+}
+
+#advertise img{
+	margin:0;
+	float:left;
+	width:256px;
+}
+
+
+h1{
+		font-family: 'GeosansLight',Verdana,sans-serif;
+	float:left;
+}
+
+h1.heading{
+	margin-right: 25px;
+	font-size: 2em;
+	padding-top: 25px;
+}
+
+h2{
+	text-decoration:underline;
+}
+
+
+.left{
+	float:left;
+	width: 200px;
+	border: double 4px #ccc;
+}
+.content{
+	width: 1024px;
+	margin: 0 auto;
+}
+.middle{
+	width: 800px;
+	margin-top: 20px;
+	overflow: auto;
+
+}
+form.login_form{
+	float:right;
+	margin-right: 10px;
+	color: #999;
+}
+.login_form input{
+	width: 80px;
+	border: solid 1px #ccc;
+	margin-bottom: 5px;
+}
+
+label{
+	display:inline-block;
+	width:70px;
+}
+
+a.add_topic{
+	display:inline-block;
+	text-decoration:none;
+	color:lime;
+	font-size:15px;
+	font-weight: bold;
+	border: solid 1px #ccc;
+	padding:2px 5px;
+}
+a.add_topic:hover{
+	border:solid 1px #000;
+}
+
+
+ul#tabs{
+	clear:both;
+	overflow: auto;
+	list-style-type: none;
+}
+ul#tabs li{
+	float:left;
+	margin-right: 5px;
+}
+
+.auswahl{
+	display:none;
+	border: dotted 3px purple;
+	padding: 15px;
+	width: 500px;
+}
+.wertung{
+	border: solid 1px #000;
+	padding: 10px;
+	border-radius:10px;
+	overflow:auto;
+	margin-bottom: 10px;
+}
+.wertung img{
+	width:120px;
+	float:left;
+}
+.wertung p{
+	width:500px;
+	margin-right: 50px;
+	float:left;
+}
+
+#firma_logo{
+	float:left;
+	margin-right: 20px;
+}
+.firm_ci{
+	overflow:auto;
+}
+.firm_info{
+	clear:both;
+	float:none;
+	margin-top:30px;
+}
+
+.bewertungen{
+	margin-top: 15px;
+}
+
+fieldset{
+	border-radius:10px;
+	margin:15px;
+	padding: 20px;
+}
+
+.new_firma label,
+.neue_wertung label{
+	width: 120px;
+}
+
+.new_firma .swboxes label{
+	width: 140px;
+}
+
+.form_row{
+	margin-bottom: 5px;
+}
+
+.fsubmit{
+	float:right;
+	margin-right: 25px;
+}
+
+.firmID{
+	overflow:auto;
+}
+label.wlabel{
+float:left;
+padding-top: 15px;
+margin-right: 5px;
+}
+
+.star{
+	width:100px;
+}
+
+textarea{
+	width:500px;
+	height: 200px;
+}
+
+label.label_area{
+	vertical-align: top;
+}

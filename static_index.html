@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="./css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
+		<script src="./js/behaviour.js"></script>
+	
+	</head>
+
+	<body>
+
+	<header>
+	<img id="logo" src="./img/logo_welle_de.png" alt="hs-logo">
+	<h1 class="heading">Firmendatenbank Hochschule Ravensburg Weingarten</h1>
+ 	<form class="login_form" action="index_submit" method="get" accept-charset="utf-8">
+		<div class="formrow">
+		<label for="name">Name</label>
+		<input type="text">
+		</div>
+		<div class="formrow">
+		<label for="password">Passwort</label>
+		<input type="password">	
+		</div>
+		<input type="submit" value="login">
+	</form>
+	</header>
+<div class="content">	
+	<ul id="tabs">
+		<li><a href="#schwerpunkt">Schwerpunkt</a>
+			<ul></ul></li>
+		<li><a href="#plz">| PLZ </a></li>
+		<li><a href="#themen">| Thema</a>  </li>
+	</ul>
+	
+	<div id="home" class="page">
+	
+			<section class="auswahl" id="schwerpunkt">
+				<div class="form_row">
+					<input id ="netze" value ="netze" type="checkbox"><label for="netze">Informationsnetze</label>
+				</div>
+				<div class="form_row">
+					<input id ="multimedia" value ="multimedia" type="checkbox"><label for="multimedia">Multimediasysteme</label>
+				</div>
+				<div class="form_row">
+					<input id="automatisierung" vlaue="automatisierung" type="checkbox"><label for="automatisierung">Automatisierungssysteme</label>
+					</div>
+			</section>
+			<section class="auswahl" id="plz">
+				<img src="./img/deutschlandkarte.gif">
+			</section>
+			<section class="auswahl" id="themen">
+				<div class="form_row">
+					<label for="thema">Thema </label><input id="thema" type="text"> <a class="add_topic" href="#">+</a>
+				</div>
+			</section>
+		</div>
+
+		<div id="result" class="page">
+			<table>
+			</table>
+		</div>
+		
+		<div id="firma" class="page">
+		<div class="firm_ci">
+		<div id="firma_logo">
+			<a href="#"><img src="./img/logo.jpg"></a>
+		</div>
+		<h2><a href="#">Firma Müller</a></h2>
+		</div>
+		<table class="firm_info">
+		<tr>
+			<th>Beschreibung</th>
+			<td>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</td>
+		</tr>
+		<tr>
+			<th>Alle Themen</th>
+			<td><a href="#">Lorem</a>, <a href="#">Ipsum</a>,<a href="#"> Dolor sit amet</a></td>
+		</tr>
+		<tr>
+			<th>Kontakt</th>
+			<td><a href="#">E-Mail</a></td>
+		</tr>
+		</table>
+		
+		<section  class="bewertungen">
+			<div class="wertung">
+				<p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+				</p>
+				<img src="./img/5star.png">
+			</div>
+			<div class="wertung">
+				<p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+				</p>
+				<img src="./img/5star.png">
+			</div>
+		</section>
+	</div> <!--end firma -->
+	
+	
+	<div id="new_firma" class="page">
+		<h2>Neue Firma Eintragen</h2>
+		
+		<form class="new_firma">
+			<fieldset>
+				<legend>Firmendaten</legend>
+				<div class="form_row">
+					<label for="fname">Firmen Name</label>
+					<input type="text" name="fname">
+				</div>
+				<div class="form_row">
+					<label for="fstreet">Strasse/ Nr</label>
+					<input type="text" name="fstreet">
+					<input type="text" for="fnr" class="fnr_input">
+				</div>
+				<div class="form_row">
+					<label for="plz">PLZ/ Ort</label>
+					<input type="text" name="fplz">
+					<input type="text" name="fort" class="fort_input">
+				</div>
+				<div class="form_row">
+					<label class="label_area" for="fbeschreibung">Beschreibung</label>
+					<textarea name="fbeschreibung">
+						</textarea>
+				</div>
+				<div class="form_row">
+					<label for="flogo">Firmen Logo</label>
+					<input type="file">
+				</div>
+			</fieldset>
+			<fieldset class="schwerpunkte">
+				<legend>Schwerpunkte &amp; Themen</legend>
+				<div class="form_row swboxes">
+					<input type="checkbox" name="s-multimedia" id="s-multimedia"><label for="s-multimedia">Multimediasysteme</label>
+					<input type="checkbox" name="s-netze" id="s-netze"><label for="s-netze">Netzwerktechnik</label>
+					<input type="checkbox" name="s-automatisierung" id="s-automatisierung"><label for="s-automatisierung">Automatisierungstechnik</label>
+				</div>
+				<div class="form_row">
+					<label for="fthemen">Themen</label><input type="text" name="fthemen"> <a class="add_topic" href="#">+</a>
+				</div>
+			</fieldset>
+			<input type="submit" value="absenden" class="fsubmit">
+		</form>
+		</div> <!--end neue firma -->
+		
+		<div id="new_wertung" class="page">
+			<h2>Firma bewerten</h2>
+			<div class="firmID">
+			<div id="firma_logo">
+				<a href="#"><img src="./img/logo.jpg"></a>
+			</div>
+				<h2><a href="#">Firma Maier</a></h2>
+				</div>
+			<form class="neue_wertung">
+				<fieldset>
+					<legend>Bewertung</legend>
+					<div class="form_row">
+						<label class="wlabel" for="wertung">Wertung</label>	<img class="star" src="./img/5star.png">
+					</div>
+					<div class="form_row">
+						<label class="label_area">Begründung</label>
+						<textarea name="wbegruendung"></textarea>
+					</div>
+				</fieldset>
+				<input type="submit" class="fsubmit" value="bewerten">
+			</form>
+		
+		</div>
+	</div> <!--end content -->
+	
+	</body>
+</html>
