@@ -26,7 +26,7 @@ while ($row = mysql_fetch_assoc($result)) {
     echo "<td>".$row["Firma"]."</td>";
 	echo "<td>".$row["Schwerpunkte"]."</td>";
 	echo "<td>".$row["Themen"]."</td>";
-	echo "<td>".$row[]."</td>"
+
 }
 
 mysql_free_result($result);
