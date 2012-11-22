@@ -12,7 +12,10 @@
 	</li>
 	<li>
 		<a href="#themen">| Thema</a>
-		<ul class="aktiv f_thema"></ul>
+		<ul class="aktiv f_thema">
+			<li class="filter-thema">Python</li>
+			<li class="filter-thema">Datenbanken</li>
+		</ul>
 	</li>
 	<li>&nbsp;
 		<ul>
