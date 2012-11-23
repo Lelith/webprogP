@@ -9,20 +9,47 @@ $(document).ready(function(){
 
 
 
-$('#firmen').click(function(event){
-	var filter=getFilter();
+$("#firmen_filter").click(function(event){
 	event.preventDefault();
-	$.get('xml_result.php?mode=short&'+filter, function(data){
-		console.log(data);
-			var html='';
+	var filter = '&themen=6&schwerpunkte=1';
+	$.get('xml_result.php?mode=filter&'+filter, function(data){
+		printCompanies(data);
+	});
+});
 
+$('#firmen').click(function(event){
+	event.preventDefault();
+	$.get('xml_result.php?mode=short', function(data){
+		printCompanies(data);
+	});
+});
+
+});
+function getFilter(){
+	var filter = new Array();
+	if($('.filter-thema').length >=1){
+		var len= parseInt($('.filter-thema').length) -1;
+		filter +="themen="
+		$('.filter-thema').each(function(index, element){
+			
+			filter +=$(element).text();
+			if(index<len)filter+=",";
+		});
+		
+	}
+
+	return filter;
+}
+
+function printCompanies(data){
+	
 	$('#firmen_tab').append("<thead><tr>\n<th>Name</th>\n<th>PLZ</th>\n<th>Schwerpunkte</th>\n<th>Themen</th>\n<th>Bewertung</th>\n</tr></thead>");
 
 		$(data).find('Firma').each(function(){
 		console.log("in print companies");
 				var $company = $(this);
 				html ='<tr>';
-				html += '<td><a href="./company.php?fid='.$company.find('FID').'"'+$company.find('Name').text()+'</td>';
+				html += '<td>'+$company.find('Name').text()+'</td>';
 				html += '<td>'+$company.find('PLZ').text()+'</td>';
 
 				//Studienschwerpunkte
@@ -59,27 +86,4 @@ $('#firmen').click(function(event){
 				$('#firmen_tab').append(html);	
 			}); //each firma
 		
-	});
-});
-
-});
-function getFilter(){
-	var filter = new Array();
-	if($('.filter-thema').length >=1){
-		var len= parseInt($('.filter-thema').length) -1;
-		filter +="themen="
-		$('.filter-thema').each(function(index, element){
-			
-			filter +=$(element).text();
-			if(index<len)filter+=",";
-		});
-		
-	}
-
-	return filter;
-}
-
-function printCompanies(data){
-	
-
 }

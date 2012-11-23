@@ -1,5 +1,4 @@
 <?php
-
 header('Content-type: text/xml');
 header('Content-Disposition: attachment; filename="firmendatenbank.xml"');
 
@@ -57,23 +56,16 @@ switch($modus){
 	break;
 	case "filter":
 		if(isset($_GET['themen'])) $themen = stripslashes($_GET['themen']);
-		//$themen = preg_split($themen,',');
+		if(isset($_GET['schwerpunkte'])) $schwerpunkte = stripslashes($_GET['schwerpunkte']);
+		
 		// do db select with filter statements
 
-	
-		$sql ="SELECT us.t2name as Firma, us.tag as Themen";
-		$sql .=" FROM (";
-		$sql .="	SELECT f2.name as t2name,(";
-		$sql .="		SELECT group_concat(distinct t2.Name order by t2.Name separator ',' ) ";
-		$sql .="		FROM Themen t2, Behandelt_Thema bt2,  Firmen f3";
-		$sql .="		WHERE t2.TID = bt2.TID_FK ";
-		$sql .="		AND bt2.FID_FK = f2.FID ";
-		$sql .="		AND t2.Name Like 'Python'";
-		$sql .="	 	) as tag FROM Firmen f2";
-		$sql .="	) us";
-		$sql .=" WHERE us.tag IS not NULL";
-	
-	
+		$sql = "SELECT DISTINCT Firmen.FID, Firmen.Name FROM Firmen, Behandelt_Thema bt, DecktAb_Schwerpunkt da_s WHERE Firmen.FID = bt.FID_FK AND bt.TID_FK IN(".$themen.") OR Firmen.FID = da_s.FID_FK AND da_s.SID_FK IN (".$schwerpunkte.")";
+		$result = execQuery($sql);
+		$xml = createMyXML($result, "firmentabelle", "Firma");
+		$xml = "<?xml version='1.0' encoding='utf-8'?> \n".$xml;
+		mysql_free_result($result);
+		echo $xml;
 		
 	break;
 }
