@@ -13,17 +13,10 @@
 	<li>
 		<a href="#themen">| Thema</a>
 		<ul class="aktiv f_thema">
-			<li class="filter-thema">Python</li>
-			<li class="filter-thema">Datenbanken</li>
-		</ul>
-	</li>
-	<li>&nbsp;
-		<ul>
-			<li><a href="#" id="no_filter">Alle Filter entfernen</a></li>
 		</ul>
 	</li>
 </ul>
-
+<button type="button" id="remove_filter">Alle Filter entfernen</button>
 
 	<section class="auswahl" id="schwerpunkt">
 		
@@ -37,7 +30,7 @@
 			
 			$schwerpunkt = $row["Name"];
 			$html .= "<div class='form_row'> \n";
-			$html .= "\t<input id='".$schwerpunkt."' value='".$schwerpunkt."' type='checkbox'><label for='".$schwerpunkt."'>".$schwerpunkt."</label>\n";
+			$html .= "\t<input id='".$schwerpunkt."' value='".$schwerpunkt."' type='checkbox' data-id='".$row['SID']."'><label for='".$schwerpunkt."'>".$schwerpunkt."</label>\n";
 			$html .="</div>\n";
 		  }
 		print $html
@@ -60,7 +53,8 @@
 		  {
 			
 			$thema = $row["Name"];
-			$html .= "<option value='".$thema."'> \n";
+			$tid = $row["TID"];
+			$html .= "<option data-id='".$tid."' value='".$thema."'> \n";
 			$html .= "\t".$thema."\n";
 			$html .="</option>\n";
 		  }

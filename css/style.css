@@ -32,7 +32,7 @@ header,
 
 
 h1{
-		font-family: 'GeosansLight',Verdana,sans-serif;
+	font-family: 'GeosansLight',Verdana,sans-serif;
 	float:left;
 }
 
@@ -43,14 +43,24 @@ h1.heading{
 }
 
 h2{
+	font-family: 'GeosansLight',Verdana,sans-serif;
 	text-decoration:underline;
 }
 
+a{
+	color: #0088CC;
+}
+
+a:hover{
+	color: #005580;
+}
 
 .left{
 	float:left;
 	width: 200px;
 	border: double 4px #ccc;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	border-radius: 6px;
 }
 .content{
 	width: 1024px;
@@ -99,12 +109,20 @@ ul#tabs{
 }
 ul#tabs li{
 	float:left;
+	padding-right: 10px;
 	margin-right: 5px;
+	width: 30%;
 }
-
+ul#tabs li ul {
+	padding-left:15px;
+}
+ul#tabs li ul li{
+	float:none;
+}
 .auswahl{
 	display:none;
-	border: dotted 3px purple;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 6px 6px 6px 6px;
 	padding: 15px;
 	width: 500px;
 }
@@ -199,4 +217,37 @@ table.results th{
 	background-color:grey;
 	font-weight: bold;
 	color: #fff;
+}
+
+#remove_filter{
+	position: relative;
+	left: 550px;
+	border: 0;
+	padding:5px;
+	color: blue;
+	background: none;
+}
+
+#remove_filter:hover{
+	text-decoration: underline;
+	cursor: pointer;
+	padding:5px;
+}
+/**** Sterne bewertungen***/
+ul.stars{
+	background-image: url('../img/Sterne/0sterne.png');
+	background-repeat: no-repeat;
+	width:120px;
+	display:block;
+	overflow: auto;
+	margin:0;
+	padding:0;
+}
+
+.stars li{
+	width: 24px;
+	height:80px;
+	display:block;
+	float:left;
+	cursor: pointer;
 }

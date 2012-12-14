@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<header>
-			<img id="logo" src="./img/logo_welle_de.png" alt="hs-logo">
+		<a href="./index.php">	<img id="logo" src="./img/logo_welle_de.png" alt="hs-logo"></a>
 			<h1 class="heading">Firmendatenbank Hochschule Ravensburg Weingarten</h1>
 			</header>
 			

@@ -25,7 +25,7 @@ switch($modus){
 		$xml =	createMyXML($result, "Firmen", "Firma");
 		
 		mysql_free_result($result);
-		$xml = "<?xml version='1.0' encoding='utf-8'?> \n".$xml;
+		$xml = "<?xml version='1.0' encoding='utf-8'?>\n".$xml;
 		echo $xml;
 	break;
 	case "export":
@@ -57,32 +57,39 @@ switch($modus){
 	case "filter":
 		if(isset($_GET['themen'])) $themen = stripslashes($_GET['themen']);
 		if(isset($_GET['schwerpunkte'])) $schwerpunkte = stripslashes($_GET['schwerpunkte']);
+		// select all fids from fitting companies
+		$sql = "SELECT DISTINCT Firmen.FID, Firmen.Name FROM Firmen, Behandelt_Thema bt, DecktAb_Schwerpunkt da_s WHERE ";
+		if(strlen($themen)>0){
+		$sql .="Firmen.FID = bt.FID_FK AND bt.TID_FK IN(".$themen.") ";	
+		} 
+		 
+		if(strlen($themen)>0 && strlen($schwerpunkte)>0){
+			$sql .="OR ";
+		}
 		
-		// do db select with filter statements
-
-		$sql = "SELECT DISTINCT Firmen.FID, Firmen.Name FROM Firmen, Behandelt_Thema bt, DecktAb_Schwerpunkt da_s WHERE Firmen.FID = bt.FID_FK AND bt.TID_FK IN(".$themen.") OR Firmen.FID = da_s.FID_FK AND da_s.SID_FK IN (".$schwerpunkte.")";
+		if(strlen($schwerpunkte)>0){
+			$sql .="Firmen.FID = da_s.FID_FK AND da_s.SID_FK IN (".$schwerpunkte.")";	
+		}
 		$result = execQuery($sql);
-		$xml = createMyXML($result, "firmentabelle", "Firma");
-		$xml = "<?xml version='1.0' encoding='utf-8'?> \n".$xml;
+		$companydata = array();
+		while ($row = mysql_fetch_assoc($result) ){
+			$sql2 = "SELECT Firmen.FID, Firmen.Name, Firmen.PLZ, Firmen.bew_avg as wertung, Firmen.bew_cnt as anz_bew, (SELECT group_concat(distinct Studienschwerpunkte.Name order by Studienschwerpunkte.Name separator ',' ) from Studienschwerpunkte, DecktAb_Schwerpunkt WHERE DecktAb_Schwerpunkt.SID_FK = Studienschwerpunkte.SID AND DecktAb_Schwerpunkt.FID_FK = Firmen.FID ) as Schwerpunkte,(SELECT group_concat(distinct Themen.Name order by Themen.Name separator ',' ) from Themen, Behandelt_Thema WHERE Themen.TID = Behandelt_Thema.TID_FK AND Behandelt_Thema.FID_FK = Firmen.FID ) as Themen FROM Firmen WHERE Firmen.FID = ".$row['FID'].";";
+				$companydata[] = execQuery($sql2);
+			 
+		}
+		$xml ="";
+		
+		foreach($companydata as $companyrow){
+				$xml .=	createMyXML($companyrow, "", "Firma");
+		}
+		//select all information for fitting companies
+	
+
+		$xml = "<?xml version='1.0' encoding='utf-8'?> \n<Firmen>".$xml."</Firmen>";
 		mysql_free_result($result);
 		echo $xml;
 		
 	break;
 }
 
-
-function execQuery($sql){
-	$result = mysql_query($sql);
-	if (!$result) {
-	    echo "Could not successfully run query ($sql) from DB: " . mysql_error();
-	    exit;
-	}
-
-	if (mysql_num_rows($result) == 0) {
-	    echo  "No rows found, nothing to print so am exiting";
-	    exit;
-	}
-	
-return $result;
-}
 ?>

@@ -1,6 +1,7 @@
 <?php
 function createMyXML($result, $tablename, $rowname){
-	$xml ="<table name='".$tablename."'>\n";
+	if(strlen($tablename)>0)$xml ="<".$tablename.">\n";
+	
 	while($row = mysql_fetch_assoc($result)){
 		$xml .="\t<".$rowname.">\n";
 		foreach( $row as $key => $value){
@@ -28,7 +29,22 @@ function createMyXML($result, $tablename, $rowname){
 	}
 	$xml .="\t</".$rowname.">\n";
 }
-$xml.="</table>";
+if(strlen($tablename)>0)$xml.="</".$tablename.">";
 return $xml;
+}
+
+function execQuery($sql){
+	$result = mysql_query($sql);
+	if (!$result) {
+	    echo "Could not successfully run query ($sql) from DB: " . mysql_error();
+	    exit;
+	}
+
+	if (mysql_num_rows($result) == 0) {
+	    echo  "No rows found, nothing to print so am exiting";
+	    exit;
+	}
+	
+return $result;
 }
 ?>
