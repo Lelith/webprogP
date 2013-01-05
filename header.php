@@ -6,8 +6,16 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
 		<script src="./js/behaviour.js"></script>
+		<script src="./js/functions.js"></script>
 		<title>Firmendatenbank Hochschule Ravensburg-Weingarten</title>
+	<script>
 	
+	var source=new EventSource("banner_rotation.php");
+	source.onmessage=function(event)
+	  {
+	  	$('#advertise').append(event.data + "<br>");
+	  };
+	</script>
 	</head>
 	<body>
 		<header>
@@ -18,19 +26,5 @@
 			
 	<!--TODO: Banner Programm -->
 			<div id="advertise">
-				<img src="./banner/technics1.jpg" alt="banner 1">
-				<img src="./banner/technics2.jpg" alt="banner 2">
-				<img src="./banner/technics4.jpg" alt="banner 4">
-				<img src="./banner/technics6.jpg" alt="banner 6">
-			</div>
-			
-<?php
-//db connect once
-$con = mysql_connect("localhost","root","");
-if (!$con)
-  {
-  die('Could not connect: ' . mysql_error());
-  }
-	mysql_select_db("hs", $con)	
 
-?>
+			</div>

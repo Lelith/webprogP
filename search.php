@@ -1,3 +1,6 @@
+<?php
+include('functions.php');
+?>
 <p class="info">
 	Bitte wählen Sie die Suchkriterien aus.
 </p>
@@ -22,7 +25,8 @@
 		
 		<?php
 		//get schwerpunkte from database
-
+		$con =	dbConnection();
+		mysql_select_db("hs", $con);
 		$result = mysql_query("SELECT * FROM Studienschwerpunkte");
 		$html = "";
 		while($row = mysql_fetch_array($result))
@@ -33,12 +37,12 @@
 			$html .= "\t<input id='".$schwerpunkt."' value='".$schwerpunkt."' type='checkbox' data-id='".$row['SID']."'><label for='".$schwerpunkt."'>".$schwerpunkt."</label>\n";
 			$html .="</div>\n";
 		  }
-		print $html
-
+		print $html;
 		?>
 	</section>
 	<section class="auswahl" id="plz">
 		<img src="./img/deutschlandkarte.gif" alt="deutschlandkarte">
+		<div class="plz-area" style="left: 40px; top: 40px" data-id="1">1</div>
 	</section>
 	<section class="auswahl" id="themen">
 				<label>Themen: </label>	
@@ -58,6 +62,7 @@
 			$html .= "\t".$thema."\n";
 			$html .="</option>\n";
 		  }
+			mysql_close($con);
 		print $html
 
 		?>
