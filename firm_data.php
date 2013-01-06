@@ -1,10 +1,9 @@
 <?php
 include('functions.php');
+include('db_con.php');
 $html = " ";
 $cid = -1;
 if(isset($_POST['cid'])){
-	$con = dbConnection();
-	mysql_select_db("hs", $con);
 	$cid = stripslashes($_POST['cid']);
 
 	if(is_numeric($_POST['wert'])){
@@ -69,8 +68,6 @@ if(isset($_GET['cid']) || $cid >=0){
 			$html .="<h2>Bewertungen</h2>";
 			$html .="<section  id='bewertungen'>";
 			$sqlWertungen ="SELECT * FROM Bewertungen WHERE Gehoert_Zu_FID =".$cid.";";
-			$con = dbConnection();
-			mysql_select_db("hs", $con);
 			$resWertungen = mysql_query($sqlWertungen);
 			if (!$resWertungen) {
 			    echo "Could not successfully run query ($sql) from DB: " . mysql_error();

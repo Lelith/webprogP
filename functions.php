@@ -1,4 +1,5 @@
 <?php
+include('db_con.php');
 function createMyXML($result, $tablename, $rowname){
 	if(strlen($tablename)>0)$xml ="<".$tablename.">\n";
 	
@@ -34,8 +35,6 @@ return $xml;
 }
 
 function execQuery($sql){
-	$con = dbConnection();
-	mysql_select_db("hs", $con);
 	$result = mysql_query($sql);
 	if (mysql_num_rows($result) == 0) {
     	echo  mysql_num_rows($result)."No rows found, nothing to print so am exiting";
@@ -46,8 +45,6 @@ function execQuery($sql){
 	    echo "Could not successfully run query ($sql) from DB: " . mysql_error();
 	    exit;
 	}
-
-mysql_close($con);
 	
 return $result;
 }

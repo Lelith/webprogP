@@ -1,5 +1,6 @@
 <?php
 include('functions.php');
+include('db_con.php');
 ?>
 <p class="info">
 	Bitte wählen Sie die Suchkriterien aus.
@@ -25,8 +26,6 @@ include('functions.php');
 		
 		<?php
 		//get schwerpunkte from database
-		$con =	dbConnection();
-		mysql_select_db("hs", $con);
 		$result = mysql_query("SELECT * FROM Studienschwerpunkte");
 		$html = "";
 		while($row = mysql_fetch_array($result))
