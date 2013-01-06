@@ -64,7 +64,7 @@ function printCompanies(data){
 					}
 
 					//bewertung
-					html +="<td> <span class='wertung-"+$company.find('wertung').text()+"'>"+$company.find('wetung').text()+"</span>\("+$company.find('anz_bew').text()+"\)</td>";
+					html +="<td><img src='./img/Sterne/star"+$.trim($company.find('wertung').text())+".png'><br>("+$company.find('anz_bew').text()+"\)</td>";
 					html +='</tr>'
 					$('#firmen_tab').append(html);	
 				}); //each firma

@@ -62,4 +62,14 @@ $(document).ready(function(){
 			printCompanies(data);
 		});
 	});
+	
+	//banner rotation
+	var source=new EventSource("banner_rotation.php");
+	source.onmessage=function(event)
+	  {
+		console.log("on message: "+event.data);
+		$('#advertise').empty();	
+	  	$('#advertise').append(event.data + "<br>");
+	  };
+	
 });

@@ -8,14 +8,6 @@
 		<script src="./js/behaviour.js"></script>
 		<script src="./js/functions.js"></script>
 		<title>Firmendatenbank Hochschule Ravensburg-Weingarten</title>
-	<script>
-	
-	var source=new EventSource("banner_rotation.php");
-	source.onmessage=function(event)
-	  {
-	  	$('#advertise').append(event.data + "<br>");
-	  };
-	</script>
 	</head>
 	<body>
 		<header>
@@ -24,7 +16,9 @@
 			</header>
 			
 			
-	<!--TODO: Banner Programm -->
+	<!-- Banner Programm-->
 			<div id="advertise">
+
+			<img src='/hs/banner/abstract.jpg'>
 
 			</div>

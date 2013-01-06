@@ -26,7 +26,8 @@ include('db_con.php');
 		
 		<?php
 		//get schwerpunkte from database
-		$result = mysql_query("SELECT * FROM Studienschwerpunkte");
+		$sql = "SELECT * FROM Studienschwerpunkte";
+		$result = execQuery($sql);
 		$html = "";
 		while($row = mysql_fetch_array($result))
 		  {

@@ -36,9 +36,8 @@ if(isset($_POST['cid'])){
 		}
 		
 		//avg und anzahl in firma updaten
-		$update = "UPDATE Firmen SET bew_cnt = '".$anzBew."', bew_avg = '".$stars."' WHERE Firmen.FID ='".$cid."'";
-		$resUpdate = mysql_query($update);
-		print $update;
+		$update = "UPDATE Firmen SET bew_cnt = '".$anzBew."', bew_avg ='".$stars."' WHERE Firmen.FID ='".$cid."'";
+		$resUpdate = mysql_query($update);	
 
 }
 

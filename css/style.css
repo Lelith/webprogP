@@ -24,10 +24,11 @@ header,
 		border-bottom: double 4px #ccc;
 }
 
-#advertise img{
-	margin:0;
-	float:left;
-	width:256px;
+#advertise h2{
+	position:relative;
+	z-index:99;
+	margin-bottom: -40px;
+	margin-left: 20px;
 }
 
 
