@@ -2,6 +2,7 @@
 include_once('functions.php');
 include_once('db_con.php');
 ?>
+<script src="./js/search.js"></script>
 <p class="info">
 	Bitte wählen Sie die Suchkriterien aus.
 </p>
