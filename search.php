@@ -1,6 +1,6 @@
 <?php
-include('functions.php');
-include('db_con.php');
+include_once('functions.php');
+include_once('db_con.php');
 ?>
 <p class="info">
 	Bitte wählen Sie die Suchkriterien aus.

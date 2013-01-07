@@ -19,6 +19,11 @@
 	<!-- Banner Programm-->
 			<div id="advertise">
 
-			<img src='/hs/banner/abstract.jpg'>
-
+		<?php
+		
+			include_once('functions.php');
+			//um sicherzugehen das mindestens ein banner geladen wird
+			$html = getBanner(); 
+			print $html;
+		?>
 			</div>

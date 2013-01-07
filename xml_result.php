@@ -7,7 +7,7 @@ include('db_con.php');
 $modus='short';
 
 if(isset($_GET['mode']))$modus = stripslashes($_GET['mode']);
-include('functions.php');
+include_once('functions.php');
 
 
 switch($modus){
