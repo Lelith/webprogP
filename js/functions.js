@@ -31,8 +31,9 @@ function printCompanies(data){
 					var $company = $(this);
 					var cid = $company.find('FID').text()
 					cid = $.trim(cid);
+					var filter = getFilter();
 					html ='<tr>';
-					html += '<td><a href="./firma.php?cid='+cid+'">'+$company.find('Name').text()+'</a></td>';
+					html += '<td><a href="./firma.php?cid='+cid+'&filter='+filter+'">'+$company.find('Name').text()+'</a></td>';
 					html += '<td>'+$company.find('PLZ').text()+'</td>';
 
 					//Studienschwerpunkte

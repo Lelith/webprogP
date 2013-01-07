@@ -8,7 +8,7 @@ include_once('header.php');
 	<?php
 	include_once('menu.php');?>
 </div>
-<div class="middle">
+<div class="middle company">
 <?php
 include_once('search.php');
 ?>

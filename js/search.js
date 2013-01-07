@@ -46,14 +46,15 @@ $(document).ready(function(){
 		});
 	
 	});
-
+	$('#remove_filter').click(function(event){
+		$('ul.aktiv').empty();
+	});
 	$('#firmen').click(function(event){
 		event.preventDefault();
 		$.get('xml_result.php?mode=short', function(data){
 			printCompanies(data);
 		});
 	});
-
 
 	$("#firmen_filter").click(function(event){
 		event.preventDefault();
@@ -67,7 +68,6 @@ $(document).ready(function(){
 	var source=new EventSource("banner_rotation.php");
 	source.onmessage=function(event)
 	  {
-		console.log("on message: "+event.data);
 		$('#advertise').empty();	
 	  	$('#advertise').append(event.data + "<br>");
 	  };

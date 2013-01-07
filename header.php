@@ -6,6 +6,7 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
 		<script src="./js/functions.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
 		<title>Firmendatenbank Hochschule Ravensburg-Weingarten</title>
 	</head>
 	<body>

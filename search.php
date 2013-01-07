@@ -3,6 +3,9 @@ include_once('functions.php');
 include_once('db_con.php');
 ?>
 <script src="./js/search.js"></script>
+
+
+<!--TODO zurueck zum suchergebniss -->
 <p class="info">
 	Bitte wählen Sie die Suchkriterien aus.
 </p>
@@ -21,8 +24,9 @@ include_once('db_con.php');
 		</ul>
 	</li>
 </ul>
-<button type="button" id="remove_filter">Alle Filter entfernen</button>
-
+<button type="button" class="filter-button" id="remove_filter">Alle Filter entfernen</button>
+<button type="button" class="filter-button" id="bto">Zurück zur Auswahl</button>
+<div class="filtering">
 	<section class="auswahl" id="schwerpunkt">
 		
 		<?php
@@ -69,6 +73,7 @@ include_once('db_con.php');
 		?>
 		</select>
 	</section>
+</div>
 <div id="home" class="page">
 
 

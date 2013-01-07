@@ -1,6 +1,6 @@
 <?php
-include('functions.php');
-include('db_con.php');
+include_once('functions.php');
+include_once('db_con.php');
 $html = " ";
 $cid = -1;
 if(isset($_POST['cid'])){
@@ -21,17 +21,16 @@ if(isset($_POST['cid'])){
 		    exit;
 			}
 
-		if (mysql_num_rows($resWertungen) == 0) {
-			print "keine Wertungen vorhanden";
-			exit;
-		}else if(mysql_num_rows($resWertungen) == 1){
-			$stars = $_POST['wertung'];
+ 		if(mysql_num_rows($resWertungen) == 1 || mysql_num_rows($resWertungen) == 0 ){
+
+			$stars = $_POST['wert'];
 			$anzBew =1;
 		}else{
 			while($row = mysql_fetch_array($resWertungen)){
 				$stars +=$row['Bewertung'];
 				$anzBew++; 
 			}
+			//auf ganze zahlen mathematisch korrekt runden
 			$stars = round(($stars/$anzBew));
 		}
 		
@@ -99,6 +98,7 @@ if(isset($_GET['cid']) || $cid >=0){
 			$html .="	<br><textarea name='begruendung' placeholder='Bitte geben Sie hier Ihre Begründung für die Bewertung ein'></textarea>";
 			$html .="	<button type='button' id='wertung-senden'>senden</button>";
 		$html .="	</div>			";
+		//TO DO fehlermeldung
 	}else{
 		print "Keine gütlige Firmen ID";
 	}

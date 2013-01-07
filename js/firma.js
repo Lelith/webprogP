@@ -1,5 +1,10 @@
 $(document).ready(function(){
 	var company = getURLParameter('cid');
+	var schwerpunkte =getURLParameter('schwerpunkte');
+	var themen =getURLParameter('themen');
+	var plz = getURLParameter('plz');
+	
+	console.log(themen);
 	
 	$.ajax({
 		type: 'GET',
@@ -40,7 +45,7 @@ $(document).ready(function(){
 			wertung=-1;
 			wText ="";
 			fid = -1;
-
+			/*TODO fehlermeldung*/
 			fid = $('#fid').html();
 			wertung = $('#stars li.active').data('wert');
 			wText = $('textarea[name="begruendung"]').val();
