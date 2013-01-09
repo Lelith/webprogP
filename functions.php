@@ -35,6 +35,7 @@ if(strlen($tablename)>0)$xml.="</".$tablename.">";
 return $xml;
 }
 
+/*Führt die Datenbank abfrage aus und überprüft das ergebniss*/
 function execQuery($sql){
 	$result = mysql_query($sql);
 	if (mysql_num_rows($result) == 0) {

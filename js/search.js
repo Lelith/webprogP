@@ -64,6 +64,15 @@ $(document).ready(function(){
 		});
 	});
 	
+	$('ul.aktiv').delegate('li', 'mouseover',function(){
+		$(this).find('span.remove').show();
+	})
+	.delegate('li', 'mouseout', function(){
+		$(this).find('span.remove').hide();
+	})
+	.delegate('li', 'click', function(){
+		$(this).remove();
+	});
 	//banner rotation
 	var source=new EventSource("banner_rotation.php");
 	source.onmessage=function(event)

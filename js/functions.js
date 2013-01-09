@@ -78,7 +78,7 @@ function printCompanies(data){
 }
 
 function addDBFilter(area, fclass, id, value){
-	$("<li class='"+fclass+"' data-id='"+id+"'>"+value+"</li>").appendTo('.'+area);
+	$("<li class='"+fclass+"' data-id='"+id+"'>"+value+"<span class='remove'>&nbsp;</span></li>").appendTo('.'+area);
 	
 }
 

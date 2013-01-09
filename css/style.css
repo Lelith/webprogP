@@ -101,7 +101,7 @@ a.add_topic:hover{
 
 ul#tabs{
 	clear:both;
-	overflow: auto;
+	overflow: hidden;
 	list-style-type: none;
 }
 ul#tabs li{
@@ -233,7 +233,21 @@ p.info{
 	color: blue;
 	background: none;
 }
-
+ul#tabs li ul.aktiv li{
+	position: relative;
+	width: -moz-max-content;
+	padding-right:16px;
+}
+.remove{
+	display:none;
+	position: absolute;
+	width:16px;
+	height:14px;
+	background-image:url(../img/close.png);
+	right:0;
+	top:5px;
+	cursor: pointer;
+}
 
 #remove_filter:hover{
 	text-decoration: underline;
