@@ -85,6 +85,39 @@ switch($modus){
 		echo $xml;
 		
 	break;
+	case "company":
+
+	if(isset($_GET['cname'])) $searchString = $_GET['cname'];
+	
+	$anz = $searchString.length;
+	echo $anz;
+	exit();
+	
+	if($searchString.length>0){
+			// select all fids from fitting companies
+			$sqlC = "SELECT DISTINCT Firmen.FID, Firmen.Name FROM Firmen, Behandelt_Thema bt, DecktAb_Schwerpunkt da_s WHERE Firmen.Name like ".$seachString;
+			echo $sqlC;
+			exit();
+
+			$companydata =array();
+			$resultC = execQuery($sql);
+				while ($row = mysql_fetch_assoc($result) ){
+					$sql2 = "SELECT Firmen.FID, Firmen.Name, Firmen.PLZ, Firmen.bew_avg as wertung, Firmen.bew_cnt as anz_bew, (SELECT group_concat(distinct Studienschwerpunkte.Name order by Studienschwerpunkte.Name separator ',' ) from Studienschwerpunkte, DecktAb_Schwerpunkt WHERE DecktAb_Schwerpunkt.SID_FK = Studienschwerpunkte.SID AND DecktAb_Schwerpunkt.FID_FK = Firmen.FID ) as Schwerpunkte,(SELECT group_concat(distinct Themen.Name order by Themen.Name separator ',' ) from Themen, Behandelt_Thema WHERE Themen.TID = Behandelt_Thema.TID_FK AND Behandelt_Thema.FID_FK = Firmen.FID ) as Themen FROM Firmen WHERE Firmen.FID = ".$row['FID'].";";
+						$companydata[] = execQuery($sql2);
+				}
+					$xml ="";
+
+					foreach($companydata as $companyrow){
+							$xml .=	createMyXML($companyrow, "", "Firma");
+					}
+					//select all information for fitting companies
+
+
+					$xml = "<?xml version='1.0' encoding='utf-8'?> \n<Firmen>".$xml."</Firmen>";
+					mysql_free_result($result);
+					echo $xml;
+			
+	}
 }
 
 ?>

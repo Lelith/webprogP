@@ -1,4 +1,12 @@
 <ul class="menu">	
-<li><a href="bewerten.php">Firma Bewerten</a></li>
+<li>
+	<a href="#" id="company-name">Firma Bewerten</a>
+	<ul>
+	<li>
+		<input id="c-name" placeholder="Firmenname" type="text" name="c-name">
+		<button id="s-company" type="button">Suchen</button>
+	</li>
+	</ul>
+</li>
 <li><a href="xml_result.php?mode=export">alle Firmen Exportieren</a></li>
 </ul>

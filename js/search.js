@@ -24,14 +24,14 @@ $(document).ready(function(){
 	
 	});
 
-/*$('#plz').delegate('.form_row input', 'click', function(){
-	if($(this).is(':checked')){
-			console.log("plz checked: "+$(this).data("id"));
-	}else{
-			console.log("schwerpunkt nchecked: "+$(this).data("id"));
-	}
+$('#plz').delegate('.plz-area', 'click', function(){
+	var area= "f_plz";
+	var fclass="filter-plz"
+	var id=$(this).data('id');
+	var value = id;	
+	addDBFilter(area, fclass, id, value);
 	
-});*/
+});
 
 	$('#themen').delegate('select', 'change', function(){
 		var area = "f_thema";
@@ -48,6 +48,15 @@ $(document).ready(function(){
 	});
 	$('#remove_filter').click(function(event){
 		$('ul.aktiv').empty();
+	});
+	
+	/***request to database***/
+	
+	$('#s-company').click(function(event){
+		var searchString = $('#c-name').val();
+		$.get('xml_result.php?mode=company&cname='+searchString, function(data){
+			printCompanies(data);
+		});
 	});
 	$('#firmen').click(function(event){
 		event.preventDefault();

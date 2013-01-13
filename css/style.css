@@ -245,7 +245,7 @@ ul#tabs li ul.aktiv li{
 	height:14px;
 	background-image:url(../img/close.png);
 	right:0;
-	top:5px;
+	
 	cursor: pointer;
 }
 

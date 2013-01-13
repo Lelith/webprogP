@@ -3,8 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" href="./css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
+<!--		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script> -->
+		<script src="./js/jquery.min.js"></script>
 		<script src="./js/functions.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
 		<title>Firmendatenbank Hochschule Ravensburg-Weingarten</title>
