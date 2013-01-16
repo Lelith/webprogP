@@ -118,12 +118,4 @@ $(document).ready(function(){
 		searchFiltered();
 	});
 	
-	//banner rotation
-	var source=new EventSource("banner_rotation.php");
-	source.onmessage=function(event)
-	  {
-		$('#advertise').empty();	
-	  	$('#advertise').append(event.data + "<br>");
-	  };
-	
 });

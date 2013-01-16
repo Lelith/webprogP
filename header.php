@@ -10,6 +10,15 @@
 		<script src="./js/jquery-ui.min.js"></script>
 		<script src="./js/jquery.tablesorter.js"></script>
 		<script src="./js/functions.js"></script>
+		<script>
+		//banner rotation
+		var source=new EventSource("banner_rotation.php");
+		source.onmessage=function(event)
+		  {
+			$('#advertise').empty();	
+		  	$('#advertise').append(event.data + "<br>");
+		  };
+		</script>
 		
 		<link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
 		<title>Firmendatenbank Hochschule Ravensburg-Weingarten</title>
