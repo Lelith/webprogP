@@ -28,7 +28,7 @@ $(document).ready(function(){
 			if(filtering==true)$('#bto').attr('href','./index.php?'+mode+'=&'+searchString);
 		}
 		
-	if(cid==undefined && filtering==true	){
+	if(cid==undefined){
 		$.get('xml_result.php?mode='+mode+'&'+searchString, function(data){
 			printCompanies(data);
 			$("#firmen_tab").trigger("update"); 
