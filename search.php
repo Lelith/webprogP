@@ -4,7 +4,6 @@ include_once('db_con.php');
 ?>
 <script src="./js/search.js"></script>
 
-
 <!--TODO zurueck zum suchergebniss -->
 <p class="info">
 	Bitte wählen Sie die Suchkriterien aus.
@@ -12,20 +11,52 @@ include_once('db_con.php');
 <ul id="tabs">
 	<li>
 		<a href="#schwerpunkt">Schwerpunkt</a>
-		<ul class="aktiv f_sw"></ul>
+		<ul class="aktiv f_sw">
+			<?php
+			if(isset($_GET['schwerpunkte'])){
+				$schwerpunkte =$_GET['schwerpunkte'];
+				$swSQL = "SELECT * FROM Studienschwerpunkte Where SID IN (".$schwerpunkte.")";
+				$swRes = execQuery($swSQL);
+				$html = "";
+				while($row = mysql_fetch_array($swRes)){	
+					print "<li class='filter-schwerpunkt' data-id='".$row['SID']."'>".$row['Name']."<span class='remove'>&nbsp;</span></li>";
+				}
+			}
+			?>
+		</ul>
 	</li>
 	<li>
 		<a href="#plz">| PLZ </a>
-		<ul class="aktiv f_plz"></ul>
+		<ul class="aktiv f_plz">
+			<?php
+			if(isset($_GET['plz'])){
+				$plzStr =$_GET['plz'];
+				$plzArr = preg_split("/,/", $plzStr);
+				foreach($plzArr as $plz){
+					print "<li class='filter-plz' data-id='".$plz."'>".$plz."<span class='remove'>&nbsp;</span></li>";
+				}
+			}
+			?>
+		</ul>
 	</li>
 	<li>
 		<a href="#themen">| Thema</a>
 		<ul class="aktiv f_thema">
+			<?php
+			if(isset($_GET['themen'])){
+				$themen =$_GET['themen'];
+				$thSQL = "SELECT * FROM Themen Where TID IN (".$themen.")";
+				$thRes = execQuery($thSQL);
+				while($row = mysql_fetch_array($thRes)){	
+					print "<li class='filter-thema' data-id='".$row['TID']."'>".$row['Name']."<span class='remove'>&nbsp;</span></li>";
+				}
+			}
+			?>
 		</ul>
 	</li>
 </ul>
 <button type="button" class="filter-button" id="remove_filter">Alle Filter entfernen</button>
-<button type="button" class="filter-button" id="bto">Zurück zur Auswahl</button>
+<a  href="./index.php" class="filter-button" id="bto">Zurück zur Auswahl</a>
 <div class="filtering">
 	<section class="auswahl" id="schwerpunkt">
 		

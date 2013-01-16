@@ -12,14 +12,23 @@ include_once('header.php');
 <?php
 include_once('search.php');
 ?>
+
 <h2>
 	Die Firmen
 </h2>
-<button type="button" id="firmen">Show results</button>
-<button type="button" id="firmen_filter">Show filtered</button>
-<table id="firmen_tab" class="results striped">
-
-
+<table id="firmen_tab" class="tablesorter results">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>PLZ</th>
+			<th>Schwerpunkte</th>
+			<th>Themen</th>
+			<th>Bewertung</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+	
 </table>
 </div>
 </div>

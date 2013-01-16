@@ -38,7 +38,7 @@ return $xml;
 /*Führt die Datenbank abfrage aus und überprüft das ergebniss*/
 function execQuery($sql){
 	$result = mysql_query($sql);
-	if (mysql_num_rows($result) == 0) {
+	if (mysql_num_rows($result) == 0){
     	echo  mysql_num_rows($result)."No rows found, nothing to print so am exiting";
     	exit;
 	}	

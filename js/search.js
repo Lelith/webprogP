@@ -1,4 +1,40 @@
 $(document).ready(function(){
+	var cid = getURLParameter('cid');
+	
+		var filter = getURLParameter('filter');
+		var searchString ="";
+		var mode ="short";
+		var filtering = false;
+		if (filter !=undefined){
+
+			var filterPLZ = getURLParameter('plz');
+			var filterSW = getURLParameter('schwerpunkte');
+			var filterTH = getURLParameter('themen');
+
+		
+			mode="filter";
+			if(filterSW!=undefined){
+				searchString +="&schwerpunkte="+filterSW;
+				filtering =true;
+			} 
+			if(filterPLZ!=undefined){
+				searchString +="&plz="+filterPLZ;
+				filtering =true;
+			}
+			if(filterTH!=undefined){
+				searchString +="themen="+filterTH;
+				filtering =true;
+			}
+			if(filtering==true)$('#bto').attr('href','./index.php?'+mode+'=&'+searchString);
+		}
+		
+	if(cid==undefined && filtering==true	){
+		$.get('xml_result.php?mode='+mode+'&'+searchString, function(data){
+			printCompanies(data);
+			$("#firmen_tab").trigger("update"); 
+		});
+	}
+
 	
 	$('#schwerpunkt').show();
 	$('#tabs li a').click(function(event){
@@ -18,20 +54,19 @@ $(document).ready(function(){
 		if($(this).is(':checked')){
 				addDBFilter(area, fclass, id, value);
 		}else{
-			console.log("not checked")
 			removeDBFilter(area, id);
 		}
 	
 	});
 
-$('#plz').delegate('.plz-area', 'click', function(){
-	var area= "f_plz";
-	var fclass="filter-plz"
-	var id=$(this).data('id');
-	var value = id;	
-	addDBFilter(area, fclass, id, value);
+	$('#plz').delegate('.plz-area', 'click', function(){
+		var area= "f_plz";
+		var fclass="filter-plz"
+		var id=$(this).data('id');
+		var value = id;	
+		addDBFilter(area, fclass, id, value);
 	
-});
+	});
 
 	$('#themen').delegate('select', 'change', function(){
 		var area = "f_thema";
@@ -46,31 +81,30 @@ $('#plz').delegate('.plz-area', 'click', function(){
 		});
 	
 	});
+	
 	$('#remove_filter').click(function(event){
 		$('ul.aktiv').empty();
+		$.get('xml_result.php?mode=short', function(data){
+			printCompanies(data);
+			$("#firmen_tab").trigger("update"); 
+		});
+		
 	});
 	
+	/**sortable table**/
+	$("#firmen_tab").tablesorter(); 
 	/***request to database***/
-	
+	$('#company-name').click(function(event){
+		event.preventDefault();
+		$('#search-name').fadeToggle();
+	});
 	$('#s-company').click(function(event){
 		var searchString = $('#c-name').val();
 		$.get('xml_result.php?mode=company&cname='+searchString, function(data){
 			printCompanies(data);
+			$("#firmen_tab").trigger("update"); 
 		});
-	});
-	$('#firmen').click(function(event){
-		event.preventDefault();
-		$.get('xml_result.php?mode=short', function(data){
-			printCompanies(data);
-		});
-	});
 
-	$("#firmen_filter").click(function(event){
-		event.preventDefault();
-		var filter = getFilter();
-		$.get('xml_result.php?mode=filter&'+filter, function(data){
-			printCompanies(data);
-		});
 	});
 	
 	$('ul.aktiv').delegate('li', 'mouseover',function(){
@@ -81,7 +115,9 @@ $('#plz').delegate('.plz-area', 'click', function(){
 	})
 	.delegate('li', 'click', function(){
 		$(this).remove();
+		searchFiltered();
 	});
+	
 	//banner rotation
 	var source=new EventSource("banner_rotation.php");
 	source.onmessage=function(event)

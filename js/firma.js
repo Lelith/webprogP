@@ -4,8 +4,6 @@ $(document).ready(function(){
 	var themen =getURLParameter('themen');
 	var plz = getURLParameter('plz');
 	
-	console.log(themen);
-	
 	$.ajax({
 		type: 'GET',
 		url: 'firm_data.php?cid='+company,
@@ -40,7 +38,6 @@ $(document).ready(function(){
 
 
 		.delegate('#wertung-senden', 'click',function(){
-			console.log("huhu");
 			var wertung, wText, fid;
 			wertung=-1;
 			wText ="";
@@ -49,7 +46,6 @@ $(document).ready(function(){
 			fid = $('#fid').html();
 			wertung = $('#stars li.active').data('wert');
 			wText = $('textarea[name="begruendung"]').val();
-			console.log("wertung: "+wertung+" begründung: "+wText.length+" fid: "+fid);
 			if(wertung!=undefined && wText.length>0){
 				$.ajax({
 					type: 'POST',

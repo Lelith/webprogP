@@ -49,9 +49,11 @@ switch($modus){
 	mysql_free_result($result3);
 	echo $xml;
 	break;
+	
 	case "filter":
 		if(isset($_GET['themen'])) $themen = stripslashes($_GET['themen']);
 		if(isset($_GET['schwerpunkte'])) $schwerpunkte = stripslashes($_GET['schwerpunkte']);
+		if(isset($_GET['plz'])) $plz = stripslashes($_GET['plz']);
 		// select all fids from fitting companies
 		$sql = "SELECT DISTINCT Firmen.FID, Firmen.Name FROM Firmen, Behandelt_Thema bt, DecktAb_Schwerpunkt da_s WHERE ";
 		if(strlen($themen)>0){
@@ -63,7 +65,21 @@ switch($modus){
 		}
 		
 		if(strlen($schwerpunkte)>0){
-			$sql .="Firmen.FID = da_s.FID_FK AND da_s.SID_FK IN (".$schwerpunkte.")";	
+			$sql .="Firmen.FID = da_s.FID_FK AND da_s.SID_FK IN (".$schwerpunkte.") ";	
+		}
+		
+		if(strlen($themen)>0 && strlen($plz)>0 || strlen($schwerpunkte)>0 && strlen($plz)>0){
+			$sql .="OR ";
+		}
+		if(strlen($plz)>0){
+			$keywords = preg_split("/[\s,]+/", $plz);
+			foreach($keywords as $key=>$value){
+				if($key>0){
+					$sql .='OR ';
+				}
+				$sql .="Firmen.PLZ Like '".$value."%' ";
+
+			}
 		}
 		$result = execQuery($sql);
 		$companydata = array();
@@ -88,20 +104,14 @@ switch($modus){
 	case "company":
 
 	if(isset($_GET['cname'])) $searchString = $_GET['cname'];
-	
-	$anz = $searchString.length;
-	echo $anz;
-	exit();
-	
-	if($searchString.length>0){
+
+	if(strlen($searchString)>0){
 			// select all fids from fitting companies
-			$sqlC = "SELECT DISTINCT Firmen.FID, Firmen.Name FROM Firmen, Behandelt_Thema bt, DecktAb_Schwerpunkt da_s WHERE Firmen.Name like ".$seachString;
-			echo $sqlC;
-			exit();
+			$sqlC = "SELECT DISTINCT Firmen.FID, Firmen.Name FROM Firmen, Behandelt_Thema bt, DecktAb_Schwerpunkt da_s WHERE Firmen.Name like '%".$searchString."%';";
 
 			$companydata =array();
-			$resultC = execQuery($sql);
-				while ($row = mysql_fetch_assoc($result) ){
+			$resultC = execQuery($sqlC);
+				while ($row = mysql_fetch_assoc($resultC) ){
 					$sql2 = "SELECT Firmen.FID, Firmen.Name, Firmen.PLZ, Firmen.bew_avg as wertung, Firmen.bew_cnt as anz_bew, (SELECT group_concat(distinct Studienschwerpunkte.Name order by Studienschwerpunkte.Name separator ',' ) from Studienschwerpunkte, DecktAb_Schwerpunkt WHERE DecktAb_Schwerpunkt.SID_FK = Studienschwerpunkte.SID AND DecktAb_Schwerpunkt.FID_FK = Firmen.FID ) as Schwerpunkte,(SELECT group_concat(distinct Themen.Name order by Themen.Name separator ',' ) from Themen, Behandelt_Thema WHERE Themen.TID = Behandelt_Thema.TID_FK AND Behandelt_Thema.FID_FK = Firmen.FID ) as Themen FROM Firmen WHERE Firmen.FID = ".$row['FID'].";";
 						$companydata[] = execQuery($sql2);
 				}
@@ -111,10 +121,7 @@ switch($modus){
 							$xml .=	createMyXML($companyrow, "", "Firma");
 					}
 					//select all information for fitting companies
-
-
 					$xml = "<?xml version='1.0' encoding='utf-8'?> \n<Firmen>".$xml."</Firmen>";
-					mysql_free_result($result);
 					echo $xml;
 			
 	}

@@ -19,21 +19,32 @@ function getFilter(){
 		});
 		
 	}
+	
+		if($('.filter-plz').length >=1){
+			var len= parseInt($('.filter-plz').length) -1;
+			filter +="&plz="
+			$('.filter-plz').each(function(index, element){
+				filter +=$(element).data("id");
+				if(index<len)filter+=",";
+			});
+			
+		}
 	return filter;
 }
 
 function printCompanies(data){
-	$('#firmen_tab').empty();
- 	if($(data).find('Firma').length>0){
-		$('#firmen_tab').append("<thead><tr>\n<th>Name</th>\n<th>PLZ</th>\n<th>Schwerpunkte</th>\n<th>Themen</th>\n<th>Bewertung</th>\n</tr></thead>");
-	
+	$('#firmen_tab tbody').empty();
+ 	if($(data).find('Firma').length>0){	
 		$(data).find('Firma').each(function(){
 					var $company = $(this);
 					var cid = $company.find('FID').text()
 					cid = $.trim(cid);
 					var filter = getFilter();
+					if(filter.length > 0){
+						filter = "&filter=&"+filter;
+					}
 					html ='<tr>';
-					html += '<td><a href="./firma.php?cid='+cid+'&filter='+filter+'">'+$company.find('Name').text()+'</a></td>';
+					html += '<td><a href="./firma.php?cid='+cid+''+filter+'">'+$company.find('Name').text()+'</a></td>';
 					html += '<td>'+$company.find('PLZ').text()+'</td>';
 
 					//Studienschwerpunkte
@@ -65,20 +76,23 @@ function printCompanies(data){
 					}
 
 					//bewertung
-					html +="<td><img src='./img/Sterne/star"+$.trim($company.find('wertung').text())+".png'><br>("+$company.find('anz_bew').text()+"\)</td>";
+					html +="<td class='wertung'><span class='hiding'>"+$.trim($company.find('wertung').text())+"</span><img src='./img/Sterne/star"+$.trim($company.find('wertung').text())+".png'>("+$company.find('anz_bew').text()+"\)</td>";
 					html +='</tr>'
-					$('#firmen_tab').append(html);	
+					$('#firmen_tab tbody').append(html);
 				}); //each firma
-	
-			}else{
-				$('#firmen_tab').append("<div class='error'>Ihre Auswahl brachte keine Ergebnisse</div>");	
-			}
 
+				
+			}else{
+				$('#firmen_tab tbody').append("<div class='error'>Ihre Auswahl brachte keine Ergebnisse</div>");
+			
+			}
+	$('#firmen_tab').show();	
 		
 }
 
 function addDBFilter(area, fclass, id, value){
 	$("<li class='"+fclass+"' data-id='"+id+"'>"+value+"<span class='remove'>&nbsp;</span></li>").appendTo('.'+area);
+	searchFiltered();
 	
 }
 
@@ -87,6 +101,15 @@ function removeDBFilter(area, id){
 		if($(this).data("id") == id){
 			$(this).remove();
 		}
+	});
+	searchFiltered();
+}
+
+function searchFiltered(){
+	var filter = getFilter();
+		$.get('xml_result.php?mode=filter&'+filter, function(data){
+		printCompanies(data);
+		$("#firmen_tab").trigger("update");
 	});
 }
 

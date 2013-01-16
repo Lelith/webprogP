@@ -67,7 +67,7 @@ a:hover{
 	width: 800px;
 	margin-top: 20px;
 	overflow: auto;
-
+	padding-left: 20px;
 }
 form.login_form{
 	float:right;
@@ -207,13 +207,20 @@ table.results{
 }
 table.results th,
 table.results td{
-	border: 1px solid #000;
+	border: 1px solid #aaa;
+	vertical-align: middle;
 }
 
 table.results th{
 	background-color:grey;
 	font-weight: bold;
-	color: #fff;
+	color: #000;
+}
+td.themen{
+	width:260px;
+}
+td.schwerpunkte{
+	width:125px;
 }
 
 .company .filtering,
@@ -262,12 +269,13 @@ ul#stars{
 	display:block;
 	overflow: auto;
 	margin:0;
+		margin-top:15px;
 	padding:0;
 }
 
 #stars li{
 	width: 24px;
-	height:80px;
+	height:20px;
 	display:block;
 	float:left;
 	cursor: pointer;
@@ -294,6 +302,18 @@ ul#stars{
 	border-radius: 4px;
 }
 
-.wertung-form{
+.wertung-form,
+#firmen_tab,
+.hiding{
+	display:none;
+}
+
+ul.menu{
+	padding-left:20px;
+}
+
+ul.menu li ul{
+	list-style-type: none;
+	padding:0;
 	display:none;
 }

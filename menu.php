@@ -1,7 +1,7 @@
 <ul class="menu">	
 <li>
 	<a href="#" id="company-name">Firma Bewerten</a>
-	<ul>
+	<ul id="search-name">
 	<li>
 		<input id="c-name" placeholder="Firmenname" type="text" name="c-name">
 		<button id="s-company" type="button">Suchen</button>
