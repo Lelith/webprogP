@@ -52,7 +52,7 @@ $(document).ready(function(){
 		var value = $(this).val();
 	
 		if($(this).is(':checked')){
-				addDBFilter(area, fclass, id, value);
+			addDBFilter(area, fclass, id, value);
 		}else{
 			removeDBFilter(area, id);
 		}

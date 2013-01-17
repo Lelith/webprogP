@@ -78,16 +78,16 @@ include_once('db_con.php');
 	</section>
 	<section class="auswahl" id="plz">
 		<img src="./img/deutschlandkarte.gif" alt="deutschlandkarte">
-		<div class="plz-area" style="left: 380px; top: 335px" data-id="0">0</div>
-		<div class="plz-area" style="left: 389px; top: 166px" data-id="1">1</div>
-		<div class="plz-area" style="left: 210px; top: 140px" data-id="2">2</div>
-		<div class="plz-area" style="left: 210px; top: 285px" data-id="3">3</div>
-		<div class="plz-area" style="left: 100px; top: 245px" data-id="4">4</div>
-		<div class="plz-area" style="left: 83px; top: 383px" data-id="5">5</div>
-		<div class="plz-area" style="left: 155px; top: 460px" data-id="6">6</div>
-		<div class="plz-area" style="left: 150px; top:550px" data-id="7">7</div>
-		<div class="plz-area" style="left: 290px; top: 590px" data-id="8">8</div>
-		<div class="plz-area" style="left: 275px; top: 443px" data-id="9">9</div>
+		<div class="plz-area" style="left: 388px; top: 332px" data-id="0">0</div>
+		<div class="plz-area" style="left: 392px; top: 161px" data-id="1">1</div>
+		<div class="plz-area" style="left: 217px; top: 134px" data-id="2">2</div>
+		<div class="plz-area" style="left: 214px; top: 277px" data-id="3">3</div>
+		<div class="plz-area" style="left: 99px; top: 240px" data-id="4">4</div>
+		<div class="plz-area" style="left: 85px; top: 377px" data-id="5">5</div>
+		<div class="plz-area" style="left: 157px; top: 453px" data-id="6">6</div>
+		<div class="plz-area" style="left: 153px; top: 544px" data-id="7">7</div>
+		<div class="plz-area" style="left: 296px; top: 586px" data-id="8">8</div>
+		<div class="plz-area" style="left: 279px; top: 437px" data-id="9">9</div>
 	</section>
 	<section class="auswahl" id="themen">
 				<label>Themen: </label>	

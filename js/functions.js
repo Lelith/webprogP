@@ -107,7 +107,13 @@ function removeDBFilter(area, id){
 
 function searchFiltered(){
 	var filter = getFilter();
-		$.get('xml_result.php?mode=filter&'+filter, function(data){
+	var filterStr = "";
+		if(filter.length > 0){
+			filterStr ="filter&"+filter;
+		}else{
+			filterStr = "short";
+		}
+		$.get('xml_result.php?mode='+filterStr, function(data){
 		printCompanies(data);
 		$("#firmen_tab").trigger("update");
 	});

@@ -65,7 +65,7 @@ function getBanner(){
 	$html ="";
 	
 	while($row = mysql_fetch_array($bannerInfo)){
-		$html = "<a href='firma.php?cid=".$arrCID[$rdnCID]."'><h2 class='advertise'>".$row['Name']."</h2><img src='/hs".$row['Banner']."'></a>";
+		$html = "<a href='firma.php?cid=".$arrCID[$rdnCID]."'><h2 class='advertise'>".$row['Name']."</h2><img src='.".$row['Banner']."'></a>";
 	}
 	return $html;
 }

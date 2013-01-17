@@ -53,7 +53,7 @@ if(isset($_GET['cid']) || $cid >=0){
 				
 				$html .="<div id='fid' class='hiding'>".$row['FID']."</div>";
 				$html .="<h1>".$row['Name']."</h1>";
-				$html .="<img src='/hs/images/".$row['Screenshot']."' width='600'>";
+				$html .="<img src='./images/".$row['Screenshot']."' width='600'>";
 				$html .="<div class='row'><h2>Beschreibung</h2><p>".$row['Beschreibung']."</p></div>";  
 				$html .="<div class='row'><h2>Alle Themen</h2><p>".$row['Themen']."</p></div>";  
 				$html .="<div class='row'><h2>Alle Schwerpunkte</h2><p>".$row['Schwerpunkte']."</p></div>"; 
