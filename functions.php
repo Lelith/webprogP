@@ -2,6 +2,7 @@
 include('db_con.php');
 
 function createMyXML($result, $tablename, $rowname){
+	$xml ="";
 	if(strlen($tablename)>0)$xml ="<".$tablename.">\n";
 	
 	while($row = mysql_fetch_assoc($result)){

@@ -22,7 +22,7 @@ $(document).ready(function(){
 				filtering =true;
 			}
 			if(filterTH!=undefined){
-				searchString +="themen="+filterTH;
+				searchString +="&themen="+filterTH;
 				filtering =true;
 			}
 			if(filtering==true)$('#bto').attr('href','./index.php?'+mode+'=&'+searchString);

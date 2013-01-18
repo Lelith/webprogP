@@ -1,13 +1,13 @@
 <?php
 include_once('functions.php');
 include_once('db_con.php');
-$html = " ";
+$html = "";
 $cid = -1;
 if(isset($_POST['cid'])){
 	$cid = stripslashes($_POST['cid']);
 
 	if(is_numeric($_POST['wert'])){
-		$sql = "INSERT INTO hs.Bewertungen(Bewertung, Kommentar, Gehoert_Zu_FID) VALUES ('".$_POST['wert']."', '".$_POST['begruendung']."', '".$cid."');";
+		$sql = "INSERT INTO webprog_03.Bewertungen(Bewertung, Kommentar, Gehoert_Zu_FID) VALUES ('".$_POST['wert']."', '".$_POST['begruendung']."', '".$cid."');";
 		$res = mysql_query($sql);
 	}
 	$stars = 0;

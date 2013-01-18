@@ -9,6 +9,9 @@ $modus='short';
 if(isset($_GET['mode']))$modus = stripslashes($_GET['mode']);
 include_once('functions.php');
 
+$themen ="";
+$plz="";
+$schwerpunkte ="";
 
 switch($modus){
 	case "short":
@@ -51,7 +54,9 @@ switch($modus){
 	break;
 	
 	case "filter":
-		if(isset($_GET['themen'])) $themen = stripslashes($_GET['themen']);
+		if(isset($_GET['themen'])){
+			$themen = stripslashes($_GET['themen']);
+		}
 		if(isset($_GET['schwerpunkte'])) $schwerpunkte = stripslashes($_GET['schwerpunkte']);
 		if(isset($_GET['plz'])) $plz = stripslashes($_GET['plz']);
 		// select all fids from fitting companies
